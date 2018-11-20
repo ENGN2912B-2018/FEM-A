@@ -21,7 +21,7 @@ protected:
 	double t_bound; // [0, t_upper_bound]
 	unsigned long T; // number of points for the mesh on the time dimension
 	double current_time;
-	unsigned long current_t;
+	unsigned long current_t_index;
 
 	vector<vector<double> > solution;
 
