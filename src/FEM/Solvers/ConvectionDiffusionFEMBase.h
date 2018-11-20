@@ -7,7 +7,7 @@ using namespace std;
 
 class ConvectionDiffusionFEMBase {
 public: 
-	virtual void take_step() = 0;
+	virtual void solve() = 0;
 
 protected:
 	ConvectionDiffusionPDE* pde; 

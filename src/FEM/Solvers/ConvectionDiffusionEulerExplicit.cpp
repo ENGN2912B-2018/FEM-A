@@ -50,7 +50,7 @@ void ConvectionDiffusionEulerExplicit::calculate_inner_mesh() {
 	}
 }
 
-void ConvectionDiffusionEulerExplicit::take_step() {
+void ConvectionDiffusionEulerExplicit::solve() {
 	while (current_time < t_bound) {
 		current_time += k;
 		current_t_index++;

@@ -25,7 +25,7 @@ public:
 	}
 	virtual ~ConvectionDiffusionEulerExplicit() {}
 	
-	void take_step();
+	void solve();
 };
 
 #endif
