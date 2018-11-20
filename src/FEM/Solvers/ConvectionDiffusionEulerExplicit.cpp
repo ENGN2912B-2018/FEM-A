@@ -4,13 +4,16 @@
 using namespace std;
 
 void ConvectionDiffusionEulerExplicit::initialize() {
+	// Initial time conditions
 	current_time = 0.0;
 	current_t_index = 0;
 
+	// Proccessing step
 	solution.resize(T);
 	for (int t = 0; t < T; t++) { solution[t].resize(N,0.0); }
 	x_values.resize(N,0.0);
-
+	
+	// Initialize the solution set at all x values
 	double x;
 	for (unsigned long n = 0; n < N; n++) {
 		x = static_cast<double>(n) * h;
@@ -19,12 +22,15 @@ void ConvectionDiffusionEulerExplicit::initialize() {
 	}
 }
 
+
+// Compute PDE's boundary conditions
 void ConvectionDiffusionEulerExplicit::calculate_boundary() {
 	// double time = current_time - k;
 	solution[current_t_index][0] = pde->left_boundary(current_time, x_values[0]);
 	solution[current_t_index][N-1] = pde->right_boundary(current_time, x_values[N-1]);
 }
 
+// Apply FEM to solve system of PDEs with given initial and boundary conditions
 void ConvectionDiffusionEulerExplicit::calculate_inner_mesh() {
 	double right, center, left, source, x, time = current_time - k;
 	double sigma = k / (h * h);
@@ -50,6 +56,7 @@ void ConvectionDiffusionEulerExplicit::calculate_inner_mesh() {
 	}
 }
 
+// Define the solve function for a single PDE
 void ConvectionDiffusionEulerExplicit::solve() {
 	while (current_time < t_bound) {
 		current_time += k;

@@ -5,11 +5,13 @@
 
 class ConvectionDiffusionEulerExplicit : public ConvectionDiffusionFEMBase {
 protected:
+	// Define protected variables
 	void initialize();
 	void calculate_boundary();
 	void calculate_inner_mesh();
 
 public:
+	// Constructor / Destructor
 	ConvectionDiffusionEulerExplicit() {}
 	ConvectionDiffusionEulerExplicit(
 		double x_bound_,
@@ -25,6 +27,7 @@ public:
 	}
 	virtual ~ConvectionDiffusionEulerExplicit() {}
 	
+	// Solve function
 	void solve();
 };
 

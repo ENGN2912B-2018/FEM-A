@@ -5,12 +5,14 @@
 
 class Option {
 public:
+	// Define public variables
 	Payoff* payoff; 
 	double strike_price;
 	double interest_rate;
 	double time_to_expiration;
 	double volatility;
-
+	
+	// Construct / Destructor
 	Option() {}
 	~Option() {};
 	Option(

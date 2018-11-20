@@ -8,11 +8,12 @@
 class BlackScholesPDE : ConvectionDiffusionPDE {
 public:
 	Option* option; 
-
+	// Constructor / Destructor
 	BlackScholesPDE() {}
 	BlackScholesPDE(Option* option_) : option(option_) {}
 	virtual ~BlackScholesPDE() {}
 
+	// Define parameters for Black Scholes equation
 	double source_param(double t, double x) const { return 0.; }
 	double solution_param(double t, double x)  const { return -option->interest_rate; }
 	double convection_param(double t, double x) const { return option->interest_rate * x; }
