@@ -7,9 +7,6 @@ using namespace std;
 
 class EuropeanCall : public Payoff {
 public:
-	// Define type_
-	string type_ = "European Call"
-
 	// Constructor / Destructor
 	EuropeanCall(const double& strike_price) : strike_price_(strike_price) {}
 	virtual ~EuropeanCall() {}
@@ -28,9 +25,6 @@ public:
 
 class EuropeanPut : public Payoff {
 public:
-	// Define type_
-	string type_ = "European Put";
-
 	// Constructor / Destructor
 	EuropeanPut(const double& strike_price) : strike_price_(strike_price) {}
 	virtual ~EuropeanPut() {}
