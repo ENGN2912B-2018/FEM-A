@@ -5,7 +5,7 @@ Jack Karafotas, Melody Hsu, Daniel Wang, Rigel Galgana
 
 Design philosophy: OptionX (name of software) aims to create an intuitive options pricing tool utilizing finite element methods to approximate solutions to PDEs necessary in most mathematical option pricing models, such as Black Scholes. By leveraging parallelization, designing a simple but informative graphical user interface, and obtaining current information on assets through web-scraping, OptionX will be faster, easier to understand, and more convenient than other available softwares.
 
-Build instructions: Create a build directory (`mkdir ./build`). Go into the build directory (`cd build`) and compile the code using cmake (`cmake -D CMAKE_CXX_COMPILER=g++ ..`). Then make all the files in the build directory (`make`).
+Build instructions: First ensure that you have `gcc` and `cmake` installed. Then, create a build directory (`mkdir ./build`). Go into the build directory (`cd build`) and compile the code using cmake (`cmake -D CMAKE_CXX_COMPILER=g++ ..`). Then make all the files in the build directory (`make`).
 
 Usage documentation: There are three main things that the user must provide: stock ticker, option type, and pricing model selected. Below are the specifics of each input:
 
