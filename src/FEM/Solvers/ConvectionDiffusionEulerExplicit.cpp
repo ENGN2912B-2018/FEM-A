@@ -38,21 +38,21 @@ void ConvectionDiffusionEulerExplicit::calculate_inner_mesh() {
 	for (unsigned long n = 1; n < N-1; n++) {
 		x = x_values[n];
 
-		 right = (sigma * pde->diffusion_param(prev_time,x)) 
-		 + (0.5 * lambda * pde->convection_param(prev_time,x));
+		right = (sigma * pde->diffusion_param(prev_time,x)) 
+		+ (0.5 * lambda * pde->convection_param(prev_time,x));
 
-		 center = 1.0 - (2.0 * sigma * pde->diffusion_param(prev_time,x))
-		 + (k * pde->solution_param(prev_time,x));
+		center = 1.0 - (2.0 * sigma * pde->diffusion_param(prev_time,x))
+		+ (k * pde->solution_param(prev_time,x));
 
-		 left = (sigma * pde->diffusion_param(prev_time,x))
-		 - (0.5 * lambda * pde->convection_param(prev_time,x));
+		left = (sigma * pde->diffusion_param(prev_time,x))
+		- (0.5 * lambda * pde->convection_param(prev_time,x));
 
-		 source = k * pde->source_param(prev_time,x);
+		source = k * pde->source_param(prev_time,x);
 
-		 solution[current_t_index][n] = (right*solution[current_t_index-1][n+1]) 
-		 + (center*solution[current_t_index-1][n]) 
-		 + (left*solution[current_t_index-1][n-1]) 
-		 - source;
+		solution[current_t_index][n] = (right*solution[current_t_index-1][n+1]) 
+		+ (center*solution[current_t_index-1][n]) 
+		+ (left*solution[current_t_index-1][n-1]) 
+		- source;
 	}
 }
 
