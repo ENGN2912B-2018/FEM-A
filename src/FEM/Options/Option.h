@@ -24,7 +24,7 @@ public:
 		double time_to_expiration_,
 		double volatility_,
 		Payoff* payoff_,
-		double lower_barrier_ = -1,
+		double lower_barrier_ = -1, // Give option to add barriers - -1 = no barrier
 		double upper_barrier_ = -1,
 		double rebate_ = 0) : 
 	strike_price(strike_price_), 
