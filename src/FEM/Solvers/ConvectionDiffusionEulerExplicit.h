@@ -18,10 +18,8 @@ public:
 		double t_bound_,
 		unsigned long N_,
 		unsigned long T_,
-		ConvectionDiffusionPDE* pde_) :
-	x_bound(x_bound_),
-	t_bound(t_bound_),
-	N(N_), T(T_), pde(pde_) {
+		ConvectionDiffusionPDE* pde_) : ConvectionDiffusionFEMBase(x_bound_,t_bound_,N_,T_,pde_)
+	{
 		calculate_step_size();
 		initialize();
 	}

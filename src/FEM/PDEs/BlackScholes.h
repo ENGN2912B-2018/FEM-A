@@ -27,7 +27,7 @@ public:
 	}
 	double right_boundary(double t, double x) const {
 		if (option->payoff->get_type() == "European Call")
-			return x - option->strike_price * exp(-option->interest_rate * (option->time_to_expiration - t));
+			return x - option->strike_price * exp(-option->interest_rate * t);
 	}
 
 	double initial_condition(double x) const {

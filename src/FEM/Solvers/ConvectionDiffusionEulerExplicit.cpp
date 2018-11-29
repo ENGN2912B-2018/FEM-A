@@ -5,7 +5,7 @@ using namespace std;
 
 void ConvectionDiffusionEulerExplicit::initialize() {
 	// Initial time conditions
-	current_time = 0.0;
+	current_time = 0.0; // time 0 = option expiration - more pos = farther in the past
 	current_t_index = 0;
 
 	// Proccessing step
@@ -32,22 +32,22 @@ void ConvectionDiffusionEulerExplicit::calculate_boundary() {
 
 // Apply FEM to solve system of PDEs with given initial and boundary conditions
 void ConvectionDiffusionEulerExplicit::calculate_inner_mesh() {
-	double right, center, left, source, x, time = current_time - k;
+	double right, center, left, source, x, prev_time = current_time - k;
 	double sigma = k / (h * h);
 	double lambda = k / h;
 	for (unsigned long n = 1; n < N-1; n++) {
 		x = x_values[n];
 
-		 right = (sigma * pde->diffusion_param(time,x)) 
-		 + (0.5 * lambda * pde->convection_param(time,x));
+		 right = (sigma * pde->diffusion_param(prev_time,x)) 
+		 + (0.5 * lambda * pde->convection_param(prev_time,x));
 
-		 center = 1.0 - (2.0 * sigma * pde->diffusion_param(time,x))
-		 + (k * pde->solution_param(time,x));
+		 center = 1.0 - (2.0 * sigma * pde->diffusion_param(prev_time,x))
+		 + (k * pde->solution_param(prev_time,x));
 
-		 left = (sigma * pde->diffusion_param(time,x))
-		 - (0.5 * lambda * pde->convection_param(time,x));
+		 left = (sigma * pde->diffusion_param(prev_time,x))
+		 - (0.5 * lambda * pde->convection_param(prev_time,x));
 
-		 source = k * pde->source_param(time,x);
+		 source = k * pde->source_param(prev_time,x);
 
 		 solution[current_t_index][n] = (right*solution[current_t_index-1][n+1]) 
 		 + (center*solution[current_t_index-1][n]) 
