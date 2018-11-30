@@ -7,30 +7,39 @@ using namespace std;
 
 class EuropeanCall : public Payoff {
 public:
-	EuropeanCall(const double& strike_price) : strike_price_(strike_price) {}
+	// Constructor / Destructor
+	EuropeanCall(const double& strike_price_) : strike_price(strike_price_) {}
 	virtual ~EuropeanCall() {}
+
+	// Call cannot be of negative value, max(stock price - strike price, 0)
 	double operator() (const double& stock_price) const {
-		double diff = stock_price - strike_price_;
+		double diff = stock_price - strike_price;
 		return (diff > 0.) ? diff : 0.;
 	}
+	// Print type
 	virtual string get_type() { return "European Call"; }
  private:
-	double strike_price_;
+	// Define private variables
+	double strike_price;
 };
 
 class EuropeanPut : public Payoff {
 public:
-	string type_ = "European Put";
-
-	EuropeanPut(const double& strike_price) : strike_price_(strike_price) {}
+	// Constructor / Destructor
+	EuropeanPut(const double& strike_price_) : strike_price(strike_price_) {}
 	virtual ~EuropeanPut() {}
+
+	// Value of a put cannot be negative, max(strike price - stock_prce, 0)
 	double operator() (const double& stock_price) const {
-		double diff =  strike_price_ - stock_price;
+		double diff =  strike_price - stock_price;
 		return (diff > 0.) ? diff : 0.;
 	}
+
+	// Print type
 	virtual string get_type() { return "European Put"; }
  private:
-	double strike_price_;
+	// Define private variables
+	double strike_price;
 };
 
 

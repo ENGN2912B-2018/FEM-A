@@ -3,7 +3,7 @@
 
 #include "ConvectionDiffusionFEMBase.h"
 
-class ConvectionDiffusionEulerExplicit : public ConvectionDiffusionFEMBase {
+class ConvectionDiffusionEulerImplicit : public ConvectionDiffusionFEMBase {
 protected:
 	// Define protected variables
 	void initialize();
@@ -12,8 +12,8 @@ protected:
 
 public:
 	// Constructor / Destructor
-	ConvectionDiffusionEulerExplicit() {}
-	ConvectionDiffusionEulerExplicit(
+	ConvectionDiffusionEulerImplicit() {}
+	ConvectionDiffusionEulerImplicit(
 		double x_bound_,
 		double t_bound_,
 		unsigned long N_,
@@ -23,7 +23,7 @@ public:
 		calculate_step_size();
 		initialize();
 	}
-	virtual ~ConvectionDiffusionEulerExplicit() {}
+	virtual ~ConvectionDiffusionEulerImplicit() {}
 	
 	// Solve function
 	void solve();

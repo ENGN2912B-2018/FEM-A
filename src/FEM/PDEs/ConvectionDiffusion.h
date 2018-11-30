@@ -4,9 +4,11 @@
 
 class ConvectionDiffusionPDE {
 public:
+	// Constructor / Destructor
 	ConvectionDiffusionPDE() {}
 	virtual ~ConvectionDiffusionPDE() {}
 
+	// Define these in children function
 	virtual double source_param(double t, double x) const = 0;
 	virtual double solution_param(double t, double x) const = 0;
 	virtual double convection_param(double t, double x) const = 0;
