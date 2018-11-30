@@ -14,8 +14,8 @@ public:
 	virtual double convection_param(double t, double x) const = 0;
 	virtual double diffusion_param(double t, double x) const = 0;
 
-	virtual double left_boundary(double t, double x) const = 0;
-	virtual double right_boundary(double t, double x) const = 0;
+	virtual double left_boundary(double t, double x, double I = 0) const = 0;
+	virtual double right_boundary(double t, double x, double I = 0) const = 0;
 
 	virtual double initial_condition(double x) const = 0;
 };

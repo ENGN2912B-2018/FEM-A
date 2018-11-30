@@ -1,5 +1,5 @@
-#ifndef CONVECTIONDIFFUSION_H
-#define CONVECTIONDIFFUSION_H
+#ifndef HYPERBOLIC_H
+#define HYPERBOLIC_H
 
 
 class HyperbolicPDE {
@@ -9,14 +9,10 @@ public:
 	virtual ~HyperbolicPDE() {}
 
 	// Define these in children function
-	virtual double source_param(double t, double x) const = 0;
-	virtual double solution_param(double t, double x) const = 0;
-	virtual double convection_param(double t, double x) const = 0;
-
-	virtual double left_boundary(double t, double x) const = 0;
-	virtual double right_boundary(double t, double x) const = 0;
-
-	virtual double initial_condition(double x) const = 0;
+	virtual double hyperbolic_param(double t, double x) const = 0;
+	virtual double hyperbolic_left_boundary(double t, double x, double I) const = 0;
+	virtual double hyperbolic_right_boundary(double t, double x, double I) const = 0;
+	virtual double init_condition(double x) const = 0;
 };
 
 

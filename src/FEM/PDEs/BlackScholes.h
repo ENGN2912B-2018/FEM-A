@@ -21,7 +21,7 @@ public:
 		return 0.5 * option->volatility * option->volatility * x * x;
 	}
 
-	double left_boundary(double t, double x) const {
+	double left_boundary(double t, double x, double I = 0) const {
 		if (option->payoff->get_type() == "European Call" || 
 			option->payoff->get_type() == "Symmetric Power Call" ||
 			option->payoff->get_type() == "Asymmetric Power Call") {
@@ -48,7 +48,7 @@ public:
 		}
 	}
 
-	double right_boundary(double t, double x) const {
+	double right_boundary(double t, double x, double I = 0) const {
 		if (option->payoff->get_type() == "European Call" || 
 			option->payoff->get_type() == "Symmetric Power Call" ||
 			option->payoff->get_type() == "Asymmetric Power Call") {
