@@ -20,7 +20,7 @@ protected:
 	unsigned long N; // number of points for the mesh on the x (spatial) dimension
 
 	double k; // time step size
-	double t_bound; // [0, t_upper_bound]
+	double t_bound; // [0,t_upper_bound]
 	unsigned long T; // number of points for the mesh on the time dimension
 	double current_time; // define the current time
 	unsigned long current_t_index; // define the current time index
