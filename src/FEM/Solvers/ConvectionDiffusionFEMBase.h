@@ -25,6 +25,9 @@ protected:
 	double current_time; // define the current time
 	unsigned long current_t_index; // define the current time index
 
+	double lambda; // k / h
+	double sigma; // k / h^2
+
 	vector<vector<double> > solution;
 	
 	// Constructor / Destructor
@@ -44,6 +47,10 @@ protected:
 	void calculate_step_size() {
 		h = x_bound / static_cast<double>(N-1);
 		k = x_bound / static_cast<double>(T-1);
+
+		lambda = k / h; 
+		sigma = k / (h * h); 
+		if ((lambda < 1) || (sigma < 1)) { /* ERROR */ }
 	}
 	
 	// Functions to obtain initial/boundary conditions, to be defined in children classes
