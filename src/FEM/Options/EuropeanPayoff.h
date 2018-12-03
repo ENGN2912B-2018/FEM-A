@@ -13,7 +13,7 @@ public:
 	virtual ~EuropeanCall() {}
 
 	// Call cannot be of negative value, max(stock price - strike price, 0)
-	double operator() (const double& stock_price) const {
+	virtual double operator() (const double& stock_price) const {
 		double diff = stock_price - strike_price;
 		return (diff > 0.) ? diff : 0.;
 	}
@@ -39,7 +39,7 @@ public:
 	virtual ~EuropeanPut() {}
 
 	// Value of a put cannot be negative, max(strike price - stock_prce, 0)
-	double operator() (const double& stock_price) const {
+	virtual double operator() (const double& stock_price) const {
 		double diff =  strike_price - stock_price;
 		return (diff > 0.) ? diff : 0.;
 	}

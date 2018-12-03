@@ -10,8 +10,8 @@ public:
 
 	// Define these in children function
 	virtual double hyperbolic_param(double t, double x) const = 0;
-	virtual double hyperbolic_left_boundary(double t, double x, double I) const = 0;
-	virtual double hyperbolic_right_boundary(double t, double x, double I) const = 0;
+	virtual double hyperbolic_left_boundary(double t, double x);
+	virtual double hyperbolic_right_boundary(double t, double x);
 	virtual double init_condition(double x) const = 0;
 };
 

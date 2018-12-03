@@ -11,8 +11,8 @@ public:
 	Payoff() {}; 
 	virtual ~Payoff() {}
 	// Functions to be defined in children
-	virtual double operator() (const double& stock_price) const = 0;
-	virtual double payoffBound(const double& stock_price, const double& time, const double& interest_rate) = 0;
+	virtual double operator() (const double&) const = 0;
+	virtual double payoffBound(const double&, const double&, const double&);
 	virtual string get_type() = 0;
 };
 

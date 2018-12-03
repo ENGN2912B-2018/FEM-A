@@ -26,8 +26,8 @@ void ConvectionDiffusionEulerExplicit::initialize() {
 // Compute PDE's boundary conditions
 void ConvectionDiffusionEulerExplicit::calculate_boundary() {
 	// double time = current_time - k;
-	solution[current_t_index][0] = pde->left_boundary(current_time, x_values[0]);
-	solution[current_t_index][N-1] = pde->right_boundary(current_time, x_values[N-1]);
+	solution[current_t_index][0] = pde->left_boundary(current_time, x_values, solution[current_t_index-1],k,h);
+	solution[current_t_index][N-1] = pde->right_boundary(current_time, x_values, solution[current_t_index-1],k,h);
 }
 
 // Apply FEM to solve system of PDEs with given initial and boundary conditions

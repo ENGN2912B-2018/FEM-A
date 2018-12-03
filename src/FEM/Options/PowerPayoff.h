@@ -14,7 +14,7 @@ public:
 	virtual ~SymmetricPowerCall() {}
 
 	// Call cannot be of negative value, max((stock price - strike price)^p, 0)
-	double operator() (const double& stock_price) const {
+	virtual double operator() (const double& stock_price) const {
 		double diff = pow(stock_price - strike_price, power);
 		return (diff > 0.) ? diff : 0.;
 	}
@@ -42,7 +42,7 @@ public:
 	virtual ~SymmetricPowerPut() {}
 
 	// Value of a put cannot be negative, max(strike price - stock_prce, 0)
-	double operator() (const double& stock_price) const {
+	virtual double operator() (const double& stock_price) const {
 		double diff =  pow(strike_price - stock_price, power);
 		return (diff > 0.) ? diff : 0.;
 	}
@@ -70,7 +70,7 @@ public:
 	virtual ~AsymmetricPowerCall() {}
 
 	// Call cannot be of negative value, max(stock price - strike price, 0)
-	double operator() (const double& stock_price) const {
+	virtual double operator() (const double& stock_price) const {
 		double diff = pow(stock_price, power) - strike_price;
 		return (diff > 0.) ? diff : 0.;
 	}
@@ -98,7 +98,7 @@ public:
 	virtual ~AsymmetricPowerPut() {}
 
 	// Value of a put cannot be negative, max(strike price - stock_prce, 0)
-	double operator() (const double& stock_price) const {
+	virtual double operator() (const double& stock_price) const {
 		double diff =  strike_price - pow(stock_price, power);
 		return (diff > 0.) ? diff : 0.;
 	}

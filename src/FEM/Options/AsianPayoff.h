@@ -6,60 +6,24 @@
 #include "Payoff.h"
 using namespace std;
 
-class AsianCall : public Payoff {
+class Asian : public Payoff {
 public:
 	// Constructor / Destructor
-	AsianCall(const double& strike_price_) : strike_price(strike_price_) {}
-	virtual ~AsianCall() {}
+	Asian(const double& time_to_expiration_) : time_to_expiration(time_to_expiration_) {}
+	virtual ~Asian() {}
 
-	// Call cannot be of negative value, max(average stock price - strike price, 0)
-	double operator() (const double& stock_price) const {
-		// NOTE: here stock price is the average stock price
-		double diff = stock_price - strike_price;
+	// Call cannot be of negative value, max(current * (1 - average price over current), 0) 
+	// - for the sake of the FEM technique we do not multiply by current till the end
+	virtual double operator() (const double& avg_price_over_current) const {
+		double diff = 1.0 - (avg_price_over_current / time_to_expiration);
 		return (diff > 0.) ? diff : 0.;
 	}
 
-	// For the upper bound on the option payoff through time 
-	virtual double payoffBound(const double& stock_price, const double& time, const double& interest_rate) {
-		// NOTE: here stock price is the average stock price
-		double diff = stock_price - (strike_price * exp(-interest_rate * time));
-		if (diff < 0) { /* ERROR */ }
-		else { return diff; }
-	}
-
 	// Print type
-	virtual string get_type() { return "Asian Call"; }
+	virtual string get_type() { return "Asian"; }
  private:
 	// Define private variables
-	double strike_price;
-};
-
-class AsianPut : public Payoff {
-public:
-	// Constructor / Destructor
-	AsianPut(const double& strike_price_) : strike_price(strike_price_) {}
-	virtual ~AsianPut() {}
-
-	// Value of a put cannot be negative, max(average strike price - stock_prce, 0)
-	double operator() (const double& stock_price) const {
-		// NOTE: here stock price is the average stock price
-		double diff =  strike_price - stock_price;
-		return (diff > 0.) ? diff : 0.;
-	}
-
-	// For the lower bound on the option payoff through time 
-	virtual double payoffBound(const double& stock_price, const double& time, const double& interest_rate) {
-		// NOTE: here stock price is the average stock price
-		double diff = (strike_price * exp(-interest_rate * time)) - stock_price;
-		if (diff < 0) { /* ERROR */ }
-		else { return diff; }
-	}
-
-	// Print type
-	virtual string get_type() { return "Asian Put"; }
- private:
-	// Define private variables
-	double strike_price;
+	double time_to_expiration;
 };
 
 
