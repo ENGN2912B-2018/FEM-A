@@ -21,6 +21,7 @@ public:
 		ConvectionDiffusionPDE* pde_) : ConvectionDiffusionFEMBase(x_bound_,t_bound_,N_,T_,pde_)
 	{
 		calculate_step_size();
+		if ((lambda < 1) || (sigma < 0.5)) { /* ERROR */ }
 		initialize();
 	}
 	virtual ~ConvectionDiffusionEulerExplicit() {}

@@ -9,6 +9,7 @@ class ConvectionDiffusionFEMBase {
 public:
 	// Define solve function to solve for single PDEs in children classes 
 	virtual void solve() = 0;
+	vector<vector<double> > getSolution() { return solution; }
 
 protected:
 	// Define protected variable
@@ -46,11 +47,10 @@ protected:
 	// Compute the step size function
 	void calculate_step_size() {
 		h = x_bound / static_cast<double>(N-1);
-		k = x_bound / static_cast<double>(T-1);
+		k = t_bound / static_cast<double>(T-1);
 
 		lambda = k / h; 
 		sigma = k / (h * h); 
-		if ((lambda < 1) || (sigma < 1)) { /* ERROR */ }
 	}
 	
 	// Functions to obtain initial/boundary conditions, to be defined in children classes

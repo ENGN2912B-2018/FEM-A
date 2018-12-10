@@ -5,7 +5,7 @@
 #include "ConvectionDiffusion.h"
 #include "Option.h"
 
-class BlackScholesPDE : ConvectionDiffusionPDE {
+class BlackScholesPDE : public ConvectionDiffusionPDE {
 public:
 	Option* option; 
 	// Constructor / Destructor
