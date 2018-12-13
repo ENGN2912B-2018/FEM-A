@@ -32,7 +32,7 @@ void ConvectionDiffusionEulerExplicit::calculate_boundary() {
 
 // Apply FEM to solve system of PDEs with given initial and boundary conditions
 void ConvectionDiffusionEulerExplicit::calculate_inner_mesh() {
-	double right, center, left, source, x, prev_time = current_time - k;
+	double right, center, left, source, x, value, prev_time = current_time - k;
 	for (unsigned long n = 1; n < N-1; n++) {
 		x = x_values[n];
 
@@ -47,10 +47,12 @@ void ConvectionDiffusionEulerExplicit::calculate_inner_mesh() {
 
 		source = k * pde->source_param(prev_time,x);
 
-		solution[current_t_index][n] = (right*solution[current_t_index-1][n+1]) 
+		value = (right*solution[current_t_index-1][n+1]) 
 		+ (center*solution[current_t_index-1][n]) 
 		+ (left*solution[current_t_index-1][n-1]) 
 		- source;
+		
+		solution[current_t_index][n] = pde->modify_solution(value,x);
 	}
 }
 

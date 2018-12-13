@@ -21,6 +21,8 @@ public:
 	virtual double right_boundary(double t, const vector<double>& x_values, const vector<double>& last_solution, const double& k, const double& h) const = 0;
 
 	virtual double initial_condition(double x) const = 0;
+
+	virtual double modify_solution(double value, double x) const; // for american options
 };
 
 

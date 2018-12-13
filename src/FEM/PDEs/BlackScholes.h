@@ -31,7 +31,8 @@ public:
 
 		if (option->payoff->get_type() == "European Call" || 
 			option->payoff->get_type() == "Symmetric Power Call" ||
-			option->payoff->get_type() == "Asymmetric Power Call") {
+			option->payoff->get_type() == "Asymmetric Power Call" || 
+			option->payoff->get_type() == "American Call") {
 
 			double x = x_values[0];
 			if (option->lower_barrier != -1) {
@@ -44,7 +45,8 @@ public:
 
 		} else if (option->payoff->get_type() == "European Put" ||
 			option->payoff->get_type() == "Symmetric Power Put" ||
-			option->payoff->get_type() == "Asymmetric Power Put") {
+			option->payoff->get_type() == "Asymmetric Power Put" || 
+			option->payoff->get_type() == "American Put") {
 
 			double x = x_values[0];
 			if (option->lower_barrier != -1) {
@@ -64,7 +66,8 @@ public:
 
 		if (option->payoff->get_type() == "European Call" || 
 			option->payoff->get_type() == "Symmetric Power Call" ||
-			option->payoff->get_type() == "Asymmetric Power Call") {
+			option->payoff->get_type() == "Asymmetric Power Call" || 
+			option->payoff->get_type() == "American Call") {
 
 			double x = x_values[x_values.size()-1];
 			if (option->upper_barrier != -1) {
@@ -76,7 +79,8 @@ public:
 
 		} else if (option->payoff->get_type() == "European Put" ||
 			option->payoff->get_type() == "Symmetric Power Put" ||
-			option->payoff->get_type() == "Asymmetric Power Put") {
+			option->payoff->get_type() == "Asymmetric Power Put" || 
+			option->payoff->get_type() == "American Put") {
 
 			double x = x_values[x_values.size()-1];
 			if (option->upper_barrier != -1) {
@@ -95,6 +99,14 @@ public:
 
 	virtual double initial_condition(double x) const {
 		return option->payoff->operator()(x);
+	}
+
+	virtual double modify_solution(double value, double x) const {
+		// Modifies the solution for american options - can only work with Euler Explicit
+		if (option->payoff->get_type() == "American Call" || option->payoff->get_type() == "American Put") {
+			if (option->payoff->operator()(x) > value) { return option->payoff->operator()(x); }
+			else { return value; }
+		} else { return value; }
 	}
 };
 

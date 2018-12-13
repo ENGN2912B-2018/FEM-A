@@ -1,4 +1,5 @@
 #include "AsianPayoff.h"
+#include "AmericanPayoff.h"
 #include "EuropeanPayoff.h"
 #include "PowerPayoff.h"
 #include "Option.h"
@@ -72,7 +73,12 @@ vector<vector<double> > solve_problem(
 			pay_off = new AsymmetricPowerCall(strike_price,power);
 		} else if (option_type == "Asymmetric Power Put") {
 			pay_off = new AsymmetricPowerPut(strike_price,power);
-		} 
+		} else if (option_type == "American Call") {
+			pay_off = new AmericanCall(strike_price);
+		} else if (option_type == "American Put") {
+			pay_off = new AmericanPut(strike_price);
+		} else { /* ERROR */ }
+		
 		Option* option = new Option(
 			strike_price,
 			risk_free_rate,
@@ -92,18 +98,32 @@ vector<vector<double> > solve_problem(
 		double lambda = k / h;
 		double sigma = k / (h * h);
 		vector<vector<double> > solution;
-		if (lambda > 2) {
-			// Error
-		} else if (lambda > 1 || sigma > 0.5) {
-			// Implicit Euler
-			ConvectionDiffusionEulerImplicit solver(price_max,time_till_expiration,price_steps,time_steps,pde);
-			solver.solve();
-			solution = solver.getSolution();
+		if (option_type != "American Call" || option_type != "American Put") {
+			// American options only work with explicit euler
+
+			if (lambda > 2) {
+				// Error
+			} else if (lambda > 1 || sigma > 0.5) {
+				// Implicit Euler
+				ConvectionDiffusionEulerImplicit solver(price_max,time_till_expiration,price_steps,time_steps,pde);
+				solver.solve();
+				solution = solver.getSolution();
+			} else {
+				// Excplit Euler
+				ConvectionDiffusionEulerExplicit solver(price_max,time_till_expiration,price_steps,time_steps,pde);
+				solver.solve();
+				solution = solver.getSolution();
+			}
 		} else {
-			// Excplit Euler
-			ConvectionDiffusionEulerExplicit solver(price_max,time_till_expiration,price_steps,time_steps,pde);
-			solver.solve();
-			solution = solver.getSolution();
+
+			if (lambda > 1 || sigma > 0.5) {
+				// ERROR
+			} else {
+				// Excplit Euler
+				ConvectionDiffusionEulerExplicit solver(price_max,time_till_expiration,price_steps,time_steps,pde);
+				solver.solve();
+				solution = solver.getSolution();
+			}
 		}
 
 		if (option_type == "Asian")
