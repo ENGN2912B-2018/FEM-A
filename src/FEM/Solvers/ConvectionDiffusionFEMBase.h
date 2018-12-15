@@ -9,6 +9,7 @@ class ConvectionDiffusionFEMBase {
 public:
 	// Define solve function to solve for single PDEs in children classes 
 	virtual void solve() = 0;
+	vector<vector<double> > getSolution() { return solution; }
 
 protected:
 	// Define protected variable
@@ -20,7 +21,7 @@ protected:
 	unsigned long N; // number of points for the mesh on the x (spatial) dimension
 
 	double k; // time step size
-	double t_bound; // [0, t_upper_bound]
+	double t_bound; // [0,t_upper_bound]
 	unsigned long T; // number of points for the mesh on the time dimension
 	double current_time; // define the current time
 	unsigned long current_t_index; // define the current time index
@@ -46,11 +47,10 @@ protected:
 	// Compute the step size function
 	void calculate_step_size() {
 		h = x_bound / static_cast<double>(N-1);
-		k = x_bound / static_cast<double>(T-1);
+		k = t_bound / static_cast<double>(T-1);
 
 		lambda = k / h; 
 		sigma = k / (h * h); 
-		if ((lambda < 1) || (sigma < 1)) { /* ERROR */ }
 	}
 	
 	// Functions to obtain initial/boundary conditions, to be defined in children classes

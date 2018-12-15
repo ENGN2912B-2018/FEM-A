@@ -6,9 +6,9 @@
 class ConvectionDiffusionEulerExplicit : public ConvectionDiffusionFEMBase {
 protected:
 	// Define protected variables
-	void initialize();
-	void calculate_boundary();
-	void calculate_inner_mesh();
+	virtual void initialize();
+	virtual void calculate_boundary();
+	virtual void calculate_inner_mesh();
 
 public:
 	// Constructor / Destructor
@@ -21,12 +21,13 @@ public:
 		ConvectionDiffusionPDE* pde_) : ConvectionDiffusionFEMBase(x_bound_,t_bound_,N_,T_,pde_)
 	{
 		calculate_step_size();
+		if ((lambda < 1) || (sigma < 0.5)) { /* ERROR */ }
 		initialize();
 	}
 	virtual ~ConvectionDiffusionEulerExplicit() {}
 	
 	// Solve function
-	void solve();
+	virtual void solve();
 };
 
 #endif

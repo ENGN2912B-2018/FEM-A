@@ -1,14 +1,14 @@
-#ifndef CONVECTIONDIFFUSIONEULEREXPLICIT_H
-#define CONVECTIONDIFFUSIONEULEREXPLICIT_H
+#ifndef CONVECTIONDIFFUSIONEULERIMPLICIT_H
+#define CONVECTIONDIFFUSIONEULERIMPLICIT_H
 
 #include "ConvectionDiffusionFEMBase.h"
 
 class ConvectionDiffusionEulerImplicit : public ConvectionDiffusionFEMBase {
 protected:
 	// Define protected variables
-	void initialize();
-	void calculate_boundary();
-	void calculate_inner_mesh();
+	virtual void initialize();
+	virtual void calculate_boundary();
+	virtual void calculate_inner_mesh();
 
 public:
 	// Constructor / Destructor
@@ -26,7 +26,7 @@ public:
 	virtual ~ConvectionDiffusionEulerImplicit() {}
 	
 	// Solve function
-	void solve();
+	virtual void solve();
 };
 
 #endif
