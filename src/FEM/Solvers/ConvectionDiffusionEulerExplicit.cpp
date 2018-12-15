@@ -1,4 +1,7 @@
 #include <vector>
+#include <unistd.h>
+#include <iostream>
+#include <chrono>
 #include "ConvectionDiffusionEulerExplicit.h"
 
 using namespace std;
@@ -33,6 +36,7 @@ void ConvectionDiffusionEulerExplicit::calculate_boundary() {
 // Apply FEM to solve system of PDEs with given initial and boundary conditions
 void ConvectionDiffusionEulerExplicit::calculate_inner_mesh() {
 	double right, center, left, source, x, value, prev_time = current_time - k;
+	#pragma omp parallel for schedule(static) num_threads(4)
 	for (unsigned long n = 1; n < N-1; n++) {
 		x = x_values[n];
 
