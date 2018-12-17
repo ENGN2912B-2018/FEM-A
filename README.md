@@ -1,4 +1,4 @@
-# FEM A - OptionX
+# FEM A - OptionX (v1.0)
 Final Project for group FEM A
 - Jack Karafotas, Daniel Wang, Rigel Galgana
 
