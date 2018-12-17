@@ -4,7 +4,7 @@
 
 using namespace std;
 
-void ConvectionDiffusionEulerImplicit::initialize() {
+void ConvectionDiffusionEulerExplicit::initialize() {
 	// Initial time conditions
 	current_time = 0.0; // time 0 = option expiration - more pos = farther in the past
 	current_t_index = 0;
@@ -25,14 +25,14 @@ void ConvectionDiffusionEulerImplicit::initialize() {
 
 
 // Compute PDE's boundary conditions
-void ConvectionDiffusionEulerImplicit::calculate_boundary() {
+void ConvectionDiffusionEulerExplicit::calculate_boundary() {
 	// double time = current_time - k;
 	solution[current_t_index][0] = pde->left_boundary(current_time, x_values, solution[current_t_index-1],k,h);
 	solution[current_t_index][N-1] = pde->right_boundary(current_time, x_values, solution[current_t_index-1],k,h);
 }
 
 // Apply FEM to solve system of PDEs with given initial and boundary conditions
-void ConvectionDiffusionEulerImplicit::calculate_inner_mesh() {
+void ConvectionDiffusionEulerExplicit::calculate_inner_mesh() {
 	double right, center, left, source, x, prev_time = current_time - k;
 	double sigma = k / (h * h);
 	double lambda = k / h;
@@ -50,7 +50,7 @@ void ConvectionDiffusionEulerImplicit::calculate_inner_mesh() {
 			A(n-1,n) =  - (sigma * pde->diffusion_param(current_time,x)) 
 			- (0.5 * lambda * pde->convection_param(current_time,x)); 
 		} 
-		if (n > 0) { 
+		if (i > 0) { 
 			A(n-1,n-2) = - (sigma * pde->diffusion_param(current_time,x)) 
 			+ (0.5 * lambda * pde->convection_param(current_time,x));
 		}
@@ -87,7 +87,7 @@ void ConvectionDiffusionEulerImplicit::calculate_inner_mesh() {
 }
 
 // Define the solve function for a single PDE
-void ConvectionDiffusionEulerImplicit::solve() {
+void ConvectionDiffusionEulerExplicit::solve() {
 	while (current_time < t_bound) {
 		current_time += k;
 		current_t_index++;
