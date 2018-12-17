@@ -1,0 +1,1 @@
+Project is built and compiled in QtCreator, instructions for which are provided in the README.md file.
