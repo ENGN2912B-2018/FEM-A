@@ -6,11 +6,14 @@ Final Project for group FEM A
 OptionX (name of software) aims to create an intuitive options pricing tool utilizing finite element methods to approximate solutions to PDEs necessary in most mathematical option pricing models, such as Black Scholes. By leveraging parallelization, designing a simple but informative graphical user interface, and obtaining current information on assets through web-scraping, OptionX will be faster, easier to understand, and more convenient than other available softwares.
 
 ### Build instructions
-- First ensure that you have `gcc` and `cmake` installed.
-- Then, create a build directory (`mkdir ./build`). 
-- Go into the build directory (`cd build`).
-- Compile the code using cmake (`cmake -D CMAKE_CXX_COMPILER=g++ ..`).
-- Then, make all the files in the build directory (`make`).
+#### Operating System and Library Requirements
+- Original operating system used was Windows 10.
+- The project is built and compiled in QtCreator.
+- Armadillo (lapack, blas) required, OpenMP required, QtCreator 3.0+ required.
+- Note: Change lines 17 and 20 in OptionX.pro to the location of the downloaded armadillo library files for lapack and blas.
+#### Run Instructions
+- Open OptionX through Qt Creator.
+- Press Ctrl-R to run the application.
 
 ### Usage documentation
 There are three main things that the user must provide: stock ticker, option type, and pricing model selected. Below are the specifics of each input:
