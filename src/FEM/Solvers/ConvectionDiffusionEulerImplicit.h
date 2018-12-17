@@ -1,9 +1,9 @@
-#ifndef CONVECTIONDIFFUSIONEULEREXPLICIT_H
-#define CONVECTIONDIFFUSIONEULEREXPLICIT_H
+#ifndef CONVECTIONDIFFUSIONEULERIMPLICIT_H
+#define CONVECTIONDIFFUSIONEULERIMPLICIT_H
 
 #include "ConvectionDiffusionFEMBase.h"
 
-class ConvectionDiffusionEulerExplicit : public ConvectionDiffusionFEMBase {
+class ConvectionDiffusionEulerImplicit : public ConvectionDiffusionFEMBase {
 protected:
 	// Define protected variables
 	virtual void initialize();
@@ -12,8 +12,8 @@ protected:
 
 public:
 	// Constructor / Destructor
-	ConvectionDiffusionEulerExplicit() {}
-	ConvectionDiffusionEulerExplicit(
+	ConvectionDiffusionEulerImplicit() {}
+	ConvectionDiffusionEulerImplicit(
 		double x_bound_,
 		double t_bound_,
 		unsigned long N_,
@@ -21,10 +21,9 @@ public:
 		ConvectionDiffusionPDE* pde_) : ConvectionDiffusionFEMBase(x_bound_,t_bound_,N_,T_,pde_)
 	{
 		calculate_step_size();
-		if ((lambda < 1) || (sigma < 0.5)) { /* ERROR */ }
 		initialize();
 	}
-	virtual ~ConvectionDiffusionEulerExplicit() {}
+	virtual ~ConvectionDiffusionEulerImplicit() {}
 	
 	// Solve function
 	virtual void solve();

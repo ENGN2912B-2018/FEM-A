@@ -8,11 +8,11 @@ using namespace std;
 class Payoff {
 public:
 	// Constructor / Destructor
-	Payoff() {}; 
-	virtual ~Payoff() {}
+    Payoff() {}
+    virtual ~Payoff() {}
 	// Functions to be defined in children
-	virtual double operator() (const double&) const = 0;
-	virtual double payoffBound(const double&, const double&, const double&);
+    virtual double operator() (const double&) const = 0;
+    virtual double payoffBound(const double&, const double&, const double&) = 0;
 	virtual string get_type() = 0;
 };
 

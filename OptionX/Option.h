@@ -17,7 +17,7 @@ public:
 	
 	// Construct / Destructor
 	Option() {}
-	~Option() {};
+    ~Option() {}
 	Option(
 		double strike_price_,
 		double interest_rate_,

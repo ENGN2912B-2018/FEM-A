@@ -1,16 +1,16 @@
-#ifndef EUROPEANPAYOFF_H
-#define EUROPEANPAYOFF_H
+#ifndef AMERICANPAYOFF_H
+#define AMERICANPAYOFF_H
 
 #include <string>
 #include <math.h>
 #include "Payoff.h"
 using namespace std;
 
-class EuropeanCall : public Payoff {
+class AmericanCall : public Payoff {
 public:
 	// Constructor / Destructor
-	EuropeanCall(const double& strike_price_) : strike_price(strike_price_) {}
-	virtual ~EuropeanCall() {}
+	AmericanCall(const double& strike_price_) : strike_price(strike_price_) {}
+	virtual ~AmericanCall() {}
 
 	// Call cannot be of negative value, max(stock price - strike price, 0)
 	virtual double operator() (const double& stock_price) const {
@@ -26,17 +26,17 @@ public:
 	}
 
 	// Print type
-	virtual string get_type() { return "European Call"; }
+	virtual string get_type() { return "American Call"; }
  private:
 	// Define private variables
 	double strike_price;
 };
 
-class EuropeanPut : public Payoff {
+class AmericanPut : public Payoff {
 public:
 	// Constructor / Destructor
-	EuropeanPut(const double& strike_price_) : strike_price(strike_price_) {}
-	virtual ~EuropeanPut() {}
+	AmericanPut(const double& strike_price_) : strike_price(strike_price_) {}
+	virtual ~AmericanPut() {}
 
 	// Value of a put cannot be negative, max(strike price - stock_prce, 0)
 	virtual double operator() (const double& stock_price) const {
@@ -52,7 +52,7 @@ public:
 	}
 
 	// Print type
-	virtual string get_type() { return "European Put"; }
+	virtual string get_type() { return "American Put"; }
  private:
 	// Define private variables
 	double strike_price;

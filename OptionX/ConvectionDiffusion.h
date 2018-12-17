@@ -9,7 +9,7 @@ class ConvectionDiffusionPDE {
 public:
 	// Constructor / Destructor
 	ConvectionDiffusionPDE() {}
-	virtual ~ConvectionDiffusionPDE() {}
+    virtual ~ConvectionDiffusionPDE() {}
 
 	// Define these in children function
 	virtual double source_param(double t, double x) const = 0;
@@ -22,7 +22,7 @@ public:
 
 	virtual double initial_condition(double x) const = 0;
 
-	virtual double modify_solution(double value, double x) const; // for american options
+    virtual double modify_solution(double value, double x) const = 0; // for american options
 };
 
 
