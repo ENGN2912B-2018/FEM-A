@@ -11,7 +11,7 @@ void ConvectionDiffusionEulerImplicit::initialize() {
 
 	// Proccessing step
 	solution.resize(T);
-	for (int t = 0; t < T; t++) { solution[t].resize(N,0.0); }
+    for (unsigned long t = 0; t < T; t++) { solution[t].resize(N,0.0); }
 	x_values.resize(N,0.0);
 	
 	// Initialize the solution set at all x values
@@ -48,9 +48,9 @@ void ConvectionDiffusionEulerImplicit::calculate_inner_mesh() {
 
 		if (n < N-2) { 
 			A(n-1,n) =  - (sigma * pde->diffusion_param(current_time,x)) 
-			- (0.5 * lambda * pde->convection_param(current_time,x)); 
+            - (0.5 * lambda * pde->convection_param(current_time,x));
 		} 
-		if (n > 0) { 
+        if (n > 1) {
 			A(n-1,n-2) = - (sigma * pde->diffusion_param(current_time,x)) 
 			+ (0.5 * lambda * pde->convection_param(current_time,x));
 		}
@@ -60,10 +60,10 @@ void ConvectionDiffusionEulerImplicit::calculate_inner_mesh() {
 	arma::vec b = arma::zeros<arma::vec>(N-2);
 
 	left = - (sigma * pde->diffusion_param(current_time,x_values[0])) + (0.5 * lambda * pde->convection_param(current_time,x_values[0]));
-	b(0) = left * pde->left_boundary(current_time, x_values[0]);
+    b(0) = left * pde->left_boundary(current_time, x_values,solution[current_t_index-1],k,h);
 
 	right = - (sigma * pde->diffusion_param(current_time,x_values[N-1])) - (0.5 * lambda * pde->convection_param(current_time,x_values[N-1]));
-	b(N-3) = right * pde->right_boundary(current_time, x_values[N-1]);
+    b(N-3) = right * pde->right_boundary(current_time, x_values,solution[current_t_index-1],k,h);
 
 	// INIT SOURCE VECTOR
 	arma::vec S = arma::zeros<arma::vec>(N-2);
@@ -74,11 +74,11 @@ void ConvectionDiffusionEulerImplicit::calculate_inner_mesh() {
 	// LAST SOLUTION
 	arma::vec u = arma::zeros<arma::vec>(N-2);
 	for (unsigned long n = 1; n < N-1; n++) {
-		u(n-1) = solution[current_t_index-1][n]
+        u(n-1) = solution[current_t_index-1][n];
 	}
 
 	// SOLVE 
-	arma::vec sol = solve(A, u + b + S);
+    arma::vec sol = arma::solve(A, u + b + S);
 
 	// STORE
 	for (unsigned long n = 1; n < N-1; n++) {
