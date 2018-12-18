@@ -67,18 +67,17 @@ Results of the Software Development Effort:
 OptionX is a fully offline basic options pricing tool with graphical user interface and data visualization done through Qt Creator. Finite element methods were utilized and accelerated to approximate the solutions to the PDEs specified by the Black Scholes pricing model.
 
 Results versus Objectives:
-With the exception of data scraping, all of the objectives were met.
+With the exception of data scraping, all of the objectives were met. The data scraper, along with a few other pricing models such as the Heston model, were deemed unnecessary. In addition, fixing certain round-off errors would also further improve the quality of the solutions returned by the software.
+
+Future Work:
+- As just mentioned, creating more robust algorithms to prevent numerical precision issues.
+- Create a fully functional data scraper to obtain information from the web and initialize the variables to these scraped values.
+- Create a 3D surface to allow the user to visualize option value with respect to future stock price as well as elapsed time.
+
+Author Contributions:
+Rigel:
+Jack:
+Daniel:
 
 
 
-
-
-
-Usage documentation
-There are three main things that the user must provide: stock ticker, option type, and pricing model selected. Below are the specifics of each input:
-
-The user will input in a stock ticker. If invalid, throw an error and prompt again. If valid, user will be given the option to input in specific values of certain metrics such as volatility, initial price, interest rate, or other parameters. If user does not provide necessary values, then OptionX will take the most recent or relevant available information on the internet and fills these values in. If no information is available, an approximation is made based off similar stocks or past behavior.
-
-The user will then input an option type (European, American, or Asian). These will determine how prices are determined and predicted performance.
-
-Lastly, the user must input in a pricing model. This at the moment only includes Black-Scholes and Heston pricing models.
