@@ -74,7 +74,12 @@ Calculating the value of the option for a particular time across stock prices (c
 
 Exception handling was done by checking that the user had input in a number within the specified valid range for each line. If the user does inputs in a non-numerical character or number outside of the valid range in any of the lines, OptionX will create a new window displaying an error message indicating that the specific invalid inputs must be fixed.
 
+Example invalid input:
+
 ![alt text](https://raw.githubusercontent.com/ENGN2912B-2018/FEM-A/master/error.png?token=AbGG1hHYVAgwYKLTg6brKN4U1SsWVUPdks5cIvfuwA%3D%3D)
+
+Example valid input:
+
 ![alt text](https://raw.githubusercontent.com/ENGN2912B-2018/FEM-A/master/validInput.png?token=AbGG1rYXSF2oWiVTpJmI2Pe0FygclvgEks5cIvn8wA%3D%3D)
 
 ## Testing and Evaluation
