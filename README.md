@@ -41,9 +41,9 @@ OptionX (the name of our software) aims to create an intuitive options pricing t
 
 - Armadillo (lapack, blas)
 
-#### Functional Block Diagrams:
+#### Functional Block / Data Flow Diagram:
 
-#### Data Flow Diagrams:
+
 
 #### UML Diagrams:
 
