@@ -132,8 +132,5 @@ Rigel: Created and designed the GUI along with the data visualization for the op
 
 Jack: Created all the option payoff classes, the generic option class, all the pde classes, the black scholes class, all the FDM solver classes, and the interface connecting the user input to the solver software.
 
-Daniel: Created a data scraper but got a concussion before being able to integrate it to the rest of the software.
-
-
-
+Daniel: Created a data scraper (we did not have time to integrate it).
 
