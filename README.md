@@ -1,7 +1,7 @@
 # OptionX: A Simple Option Pricing Software Leveraging Finite Element Methods.
 
 
-#### Final Project for group FEM-A
+#### FEM, Group A
 
 
 #### Rigel Galgana, Jack Karafotas, Daniel Wang
@@ -12,16 +12,20 @@
 #### ENGN 2912b Scientific Programming in C++, December 2018
 
 
-## Project Overview:
+## Introduction
+#### Project Overview:
 
-OptionX (the name of our software) aims to create an intuitive options pricing tool utilizing finite elements to approximate solutions to the partial differential equations (PDEs) used in most mathematical option pricing models, such as Black Scholes. 
+OptionX (the name of our software) aims to create an intuitive options pricing tool utilizing finite difference methods to approximate solutions to the partial differential equations (PDEs) used in most mathematical option pricing models, such as Black Scholes. Finite Difference Methods allows our users to easily value exotic options as well as vanilla options - something that most out of the box option valuation solvers struggle to do. This makes OptionX extremely useful for day traders that do not work for a major corporation that gives them access powerful software because it allows them to get a base valuation for more complex options which, in turn, allows them to place more complex bets on the market.
 
+#### Goals and Objectives:
 
-## Goals and Objectives:
+- Construct classes for European Options, Barrier Options, American Options, Power Options, and Asian Options.
 
-- Construct classes for each option type, the Black Scholes pricing model, and each FEM based solver to allow for basic functionality.
+- Construct the Black Scholes pricing model and the Heston pricing model as Partial Differential Equations.
 
-- In the FEM solvers, mesh initialization must be parallelized for speed.
+- Construct the Explicit Euler and Implicit Euler Finite Difference Method schemes.
+
+- In the FDM solvers, mesh calculation must be parallelized for speed.
 
 - Design a simple, intuitive user interface in Qt Creator.
 
@@ -31,6 +35,7 @@ OptionX (the name of our software) aims to create an intuitive options pricing t
 
 - Build a data scraper to obtain information about particular stocks online.
 
+## Software Architectural Design
 
 #### Required External Libraries:
 
@@ -42,13 +47,15 @@ OptionX (the name of our software) aims to create an intuitive options pricing t
 
 #### UML Diagrams:
 
+## Interface Descriptions
+
 #### Graphical Interface:
 
 OptionX, as promised, has a very simple graphical user interface. Upon running the program, a small window appears. On this screen are lines for the user to input the option type, days until expiration, stock initial price, volatility, strike price, interest rate, power, upper barrier, rebate, and current to average price ratio. The latter 5 values are initialized. At the bottom of the screen are the solve and help buttons. Clicking the solve button checks for valid input and then returns both the current value of the option as well as the option value given different future stock prices. Clicking the help button opens a new window specifying the input value definitions, units of measurement, and valid range.
 
 #### Data Visualization:
 
-Assuming valid input, upon hitting the solve button, two small windows appear: the first is a message bar indicating the current value of the option and the second is a 2D line plot of the current option value versus future stock price.
+Assuming valid input, upon hitting the solve button, two small windows appear: the first is a message bar indicating the current value of the option and the second is a 2D line plot of the option value at the current time versus stock price - this gives the user a broader view of how the value of the option might change if the stock price changes.
 
 #### Communications Protocols:
 
