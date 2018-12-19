@@ -96,7 +96,7 @@ The functional testing for the software consisted mostly of verifying the correc
 
 - The project is built and compiled in QtCreator.
 
-- Armadillo (lapack, blas) required, OpenMP required, QtCreator 3.0+ required.
+- Armadillo version 9.200.6 (lapack, blas) required, OpenMP required, QtCreator 3.0+ required.
 
 - Note: Change lines 17 and 20 in OptionX.pro to the location of the downloaded armadillo library files for lapack and blas.
 
