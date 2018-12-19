@@ -43,7 +43,7 @@ OptionX (the name of our software) aims to create an intuitive options pricing t
 
 #### Functional Block / Data Flow Diagram:
 
-
+![alt text](https://raw.githubusercontent.com/ENGN2912B-2018/FEM-A/master/Functional_Block_Diagram.png?token=AbGG1mR9ciHn8VVg9d6qK8aR5j2y0yj7ks5cIuTNwA%3D%3D)
 
 #### UML Diagrams:
 
@@ -59,7 +59,7 @@ Assuming valid input, upon hitting the solve button, two small windows appear: t
 
 #### Communications Protocols:
 
-Fortuneatly passing data through the program is fairly simple. The user inputs a bunch of doubles and an option type - we convert these to doubles and a string respectively. We then pass that into our interface solver. In this solver we build a Payoff object, that then gets fed into an Option object, which is then fed into a PDE object, which is fed into a FDM solver. Inside this FDM solver we parallelize across an STL vector of doubles stored in shared memory. We then pass an STL vector of STL vectors of doubles (the value of the option across time and stock price) stored in shared memory back to our interface so that we can return a value (double) back to our user and a plot.
+Fortunately passing data through the program is fairly simple. The user inputs in values for each of the parameters, which Qt interprets as QStrings - we convert these to doubles or strings as appropriate. We then pass these values into our interface solver. In this solver we build a Payoff object, that then gets fed into an Option object, which is then fed into a PDE object, which is fed into a FDM solver. Inside this FDM solver we parallelize across an STL vector of doubles stored in shared memory. We then pass an STL vector of STL vectors of doubles (the value of the option across time and stock price) stored in shared memory back to our interface so that we can return a value (double) back to our user and a plot.
 
 #### Threading and Concurrency:
 
@@ -81,10 +81,14 @@ The functional testing for the software consisted mostly of verifying the correc
 
 #### Instructions for Compiling and Running the Software:
 
--The project is built and compiled in QtCreator.
--Armadillo (lapack, blas) required, OpenMP required, QtCreator 3.0+ required.
--Note: Change lines 17 and 20 in OptionX.pro to the location of the downloaded armadillo library files for lapack and blas.
+- The project is built and compiled in QtCreator.
+
+- Armadillo (lapack, blas) required, OpenMP required, QtCreator 3.0+ required.
+
+- Note: Change lines 17 and 20 in OptionX.pro to the location of the downloaded armadillo library files for lapack and blas.
+
 - Open OptionX through Qt Creator.
+
 - Press Ctrl-R to run the application.
 
 ## Conclusions
@@ -99,7 +103,7 @@ OptionX is a fully offline basic options pricing tool with graphical user interf
 
 #### Results versus Objectives:
 
-Almost all of the objectives were met. We were not able to create the Heston model PDE and the data scraper. However, the data scraper and the Heston model were ultimately deemed unnecessary because users can input the data they want and we already have the Black Scholes model which is very powerful. In addition, there are a couple bugs that we did not expect (entering certain time to exprition days causes the program to crash due to round-off errors) but these aren't significant enough to impede on the user experience.
+Almost all of the objectives were met. We were not able to create the Heston model PDE and the data scraper. However, the data scraper and the Heston model were ultimately deemed unnecessary because users can input the data they want with very little additional effort and we already have the Black Scholes model which is very powerful. In addition, there are a couple bugs that we did not expect (entering certain time to exprition days causes the program to crash due to round-off errors) but these aren't significant enough to impede on the user experience.
 
 ## Future Work:
 
