@@ -54,6 +54,7 @@ OptionX (the name of our software) aims to create an intuitive options pricing t
 OptionX, as promised, has a very simple graphical user interface. Upon running the program, a small window appears. On this screen are lines for the user to input the option type, days until expiration, stock initial price, volatility, strike price, interest rate, power, upper barrier, rebate, and current to average price ratio. The latter 5 values are initialized. At the bottom of the screen are the solve and help buttons. Clicking the solve button checks for valid input and then returns both the current value of the option as well as the option value given different future stock prices. Clicking the help button opens a new window specifying the input value definitions, units of measurement, and valid range.
 
 ![alt text](https://raw.githubusercontent.com/ENGN2912B-2018/FEM-A/master/optionXgui.png?token=AbGG1iiJ68HLLA9RDem_Us7ZWsLRLz3jks5cIvjSwA%3D%3D)
+![alt text](https://raw.githubusercontent.com/ENGN2912B-2018/FEM-A/master/help.png?token=AbGG1tVMo0ERrR24R7WbwCjM70FqhMKsks5cIvlhwA%3D%3D)
 
 #### Data Visualization:
 
