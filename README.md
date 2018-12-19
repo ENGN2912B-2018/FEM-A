@@ -59,7 +59,7 @@ Assuming valid input, upon hitting the solve button, two small windows appear: t
 
 #### Communications Protocols:
 
-Fortuneatly passing data through the program is fairly simple. The user inputs a bunch of doubles and an option type - we convert these to doubles and a string respectively. We then pass that into our interface solver. In this solver we build a Payoff object, that then gets fed into an Option object, which is then fed into a PDE object, which is fed into a FDM solver. Inside this FDM solver we parallelize across an STL vector of doubles stored in shared memory. We then pass an STL vector of STL vectors of doubles (the value of the option across time and stock price) stored in shared memory back to our interface so that we can return a value (double) back to our user and a plot.
+Fortunately passing data through the program is fairly simple. The user inputs a bunch of doubles and an option type - we convert these to doubles and a string respectively. We then pass that into our interface solver. In this solver we build a Payoff object, that then gets fed into an Option object, which is then fed into a PDE object, which is fed into a FDM solver. Inside this FDM solver we parallelize across an STL vector of doubles stored in shared memory. We then pass an STL vector of STL vectors of doubles (the value of the option across time and stock price) stored in shared memory back to our interface so that we can return a value (double) back to our user and a plot.
 
 #### Threading and Concurrency:
 
