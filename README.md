@@ -53,9 +53,14 @@ OptionX (the name of our software) aims to create an intuitive options pricing t
 
 OptionX, as promised, has a very simple graphical user interface. Upon running the program, a small window appears. On this screen are lines for the user to input the option type, days until expiration, stock initial price, volatility, strike price, interest rate, power, upper barrier, rebate, and current to average price ratio. The latter 5 values are initialized. At the bottom of the screen are the solve and help buttons. Clicking the solve button checks for valid input and then returns both the current value of the option as well as the option value given different future stock prices. Clicking the help button opens a new window specifying the input value definitions, units of measurement, and valid range.
 
+![alt text](https://raw.githubusercontent.com/ENGN2912B-2018/FEM-A/master/optionXgui.png?token=AbGG1iiJ68HLLA9RDem_Us7ZWsLRLz3jks5cIvjSwA%3D%3D)
+
 #### Data Visualization:
 
 Assuming valid input, upon hitting the solve button, two small windows appear: the first is a message bar indicating the current value of the option and the second is a 2D line plot of the option value at the current time versus stock price - this gives the user a broader view of how the value of the option might change if the stock price changes.
+
+![alt text](https://raw.githubusercontent.com/ENGN2912B-2018/FEM-A/master/graph.png?token=AbGG1rNA0GQ83oglIYgpe_GlH4KTBydEks5cIvjmwA%3D%3D)
+![alt text](https://raw.githubusercontent.com/ENGN2912B-2018/FEM-A/master/optionValue.png?token=AbGG1gE1DV3S3buXtOEV1hoAGFlMwLn4ks5cIvkpwA%3D%3D)
 
 #### Communications Protocols:
 
@@ -68,6 +73,8 @@ Calculating the value of the option for a particular time across stock prices (c
 #### Exception Handling:
 
 Exception handling was done by checking that the user had input in a number within the specified valid range for each line. If the user does inputs in a non-numerical character or number outside of the valid range in any of the lines, OptionX will create a new window displaying an error message indicating that the specific invalid inputs must be fixed.
+
+![alt text](https://raw.githubusercontent.com/ENGN2912B-2018/FEM-A/master/error.png?token=AbGG1hHYVAgwYKLTg6brKN4U1SsWVUPdks5cIvfuwA%3D%3D)
 
 ## Testing and Evaluation
 
