@@ -47,6 +47,8 @@ OptionX (the name of our software) aims to create an intuitive options pricing t
 
 #### UML Diagrams:
 
+![alt text](https://raw.githubusercontent.com/ENGN2912B-2018/FEM-A/master/uml.png?token=AbGG1pTqlF-YPP3wDl24JzYRi-29y1PVks5cIwQ9wA%3D%3D)
+
 ## Interface Descriptions
 
 #### Graphical Interface:
