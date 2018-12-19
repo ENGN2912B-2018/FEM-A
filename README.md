@@ -61,6 +61,7 @@ OptionX, as promised, has a very simple graphical user interface. Upon running t
 
 Assuming valid input, upon hitting the solve button, two small windows appear: the first is a message bar indicating the current value of the option and the second is a 2D line plot of the option value at the current time versus stock price - this gives the user a broader view of how the value of the option might change if the stock price changes.
 
+(Example Output)
 ![alt text](https://raw.githubusercontent.com/ENGN2912B-2018/FEM-A/master/graph.png?token=AbGG1rNA0GQ83oglIYgpe_GlH4KTBydEks5cIvjmwA%3D%3D)
 ![alt text](https://raw.githubusercontent.com/ENGN2912B-2018/FEM-A/master/optionValue.png?token=AbGG1gE1DV3S3buXtOEV1hoAGFlMwLn4ks5cIvkpwA%3D%3D)
 
