@@ -43,7 +43,7 @@ OptionX (the name of our software) aims to create an intuitive options pricing t
 
 #### Functional Block / Data Flow Diagram:
 
-
+![alt text](https://raw.githubusercontent.com/ENGN2912B-2018/FEM-A/master/Functional_Block_Diagram.png)
 
 #### UML Diagrams:
 
