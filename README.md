@@ -59,13 +59,17 @@ Assuming valid input, upon hitting the solve button, two small windows appear: t
 
 #### Communications Protocols:
 
+Fortuneatly passing data through the program is fairly simple. The user inputs a bunch of doubles and an option type - we convert these to doubles and a string respectively. We then pass that into our interface solver. In this solver we build a Payoff object, that then gets fed into an Option object, which is then fed into a PDE object, which is fed into a FDM solver. Inside this FDM solver we parallelize across an STL vector of doubles stored in shared memory. We then pass an STL vector of STL vectors of doubles (the value of the option across time and stock price) stored in shared memory back to our interface so that we can return a value (double) back to our user and a plot.
+
 #### Threading and Concurrency:
 
-The mesh initialization in the Euler-Explicit solver was parallelized using Open MP. Parallelizing anything outside of the mesh initialization, such as the PDE solvers, is difficult as these calculations are inherently time dependent and hence, cannot be parallelized.
+Calculating the value of the option for a particular time across stock prices (calculating the inner mesh for that time) in the Euler-Explicit solver (the primary solver we use) was parallelized using Open MP. Parallelizing across the time dimension is not possible since all FDM solvers solutions at a particular time are dependent on their solutions at past times - making this a time dependent problem and thus not parallelizable in that direction. Therefore, we only parallelized across the stock price direction.
 
 #### Exception Handling:
 
 Exception handling was done by checking that the user had input in a number within the specified valid range for each line. If the user does inputs in a non-numerical character or number outside of the valid range in any of the lines, OptionX will create a new window displaying an error message indicating that the specific invalid inputs must be fixed.
+
+## Testing and Evaluation
 
 #### Operating System and Software Compiler/Library Versions Tested:
 
@@ -73,7 +77,7 @@ The original operating system used to create the Options, PDEs, and Solvers clas
 
 #### Description of Functional Testing to Date:
 
-The functional testing for the software consisted mostly of verifying the correctness of the behavior of the value versus stock price curve in the output plot after hitting the solve button. A few small numerical precision errors were caught such as those involving unreasonably small or large values for certain input, such as power. Aside from this, inputting certain valid values of days until expiration may crash the code due to step-size rounding errors.
+The functional testing for the software consisted mostly of verifying the correctness of the behavior of the value versus stock price curve in the output plot after hitting the solve button. A few small numerical precision errors were caught such as those involving unreasonably small or large values for certain input, such as power. Aside from this, inputting certain valid values of days until expiration may crash the code due to step-size rounding errors. Error handling was also thoroughly tested.
 
 #### Instructions for Compiling and Running the Software:
 
@@ -83,23 +87,25 @@ The functional testing for the software consisted mostly of verifying the correc
 - Open OptionX through Qt Creator.
 - Press Ctrl-R to run the application.
 
-## Major Accomplishments:
+## Conclusions
 
-Classes for a wide variety of option types and their corresponding solvers were successfully constructed and tested. Similarly, the simplicity and blandness of the GUI allow the user to focus on crucial parameters and inputting reasonable values for these parameters. Because of its small size, it will not get in the way of traders looking at recent stocks performance and information. Lastly, the solvers are extremely fast, fulfilling our initial promise of speed.
+#### Major Accomplishments:
 
-## Results of the Software Development Effort:
+Classes for a wide variety of option types, their corresponding PDEs, and FDM solvers were successfully constructed and tested. Similarly, the simplicity of the GUI allow the user to focus on crucial parameters and inputting reasonable values for these parameters. Because of its small size, it will not get in the way of traders looking at recent stocks performance and information. It also is able to calculate the value of the option over time and space - this allows us to give traders much more information of how their option value changes over time and price allowing them to make wiser investment decisions. This is the primary purpose of the plot. Lastly, the solvers are extremely fast, fulfilling our initial promise of speed.
 
-OptionX is a fully offline basic options pricing tool with graphical user interface and data visualization done through Qt Creator. Finite element methods were utilized and accelerated to approximate the solutions to the PDEs specified by the Black Scholes pricing model.
+#### Results of the Software Development Effort:
 
-## Results versus Objectives:
+OptionX is a fully offline basic options pricing tool with graphical user interface and data visualization done through Qt Creator. Finite difference methods were utilized and accelerated to approximate the solutions to the PDEs specified by the Black Scholes pricing model and option payoffs.
 
-With the exception of data scraping, all of the objectives were met. The data scraper, along with a few other pricing models such as the Heston model, were deemed unnecessary. In addition, fixing certain round-off errors would also further improve the quality of the solutions returned by the software.
+#### Results versus Objectives:
+
+Almost all of the objectives were met. We were not able to create the Heston model PDE and the data scraper. However, the data scraper and the Heston model were ultimately deemed unnecessary because users can input the data they want and we already have the Black Scholes model which is very powerful. In addition, there are a couple bugs that we did not expect (entering certain time to exprition days causes the program to crash due to round-off errors) but these aren't significant enough to impede on the user experience.
 
 ## Future Work:
 
 - As just mentioned, creating more robust algorithms to prevent numerical precision issues.
-- Create a fully functional data scraper to obtain information from the web and initialize the variables to these scraped values.
-- Create a 3D surface to allow the user to visualize option value with respect to future stock price as well as elapsed time.
+- Create a fully functional data scraper to obtain information from the web and initialize the variables to these scraped values so the user does not have to input them.
+- Create a 3D surface to allow the user to visualize option value with respect to potential stock price as well as elapsed time.
 
 ## Author Contributions:
 
