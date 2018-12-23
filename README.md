@@ -1,4 +1,4 @@
-# OptionX: A Simple Option Pricing Software Leveraging Finite Element Methods.
+# OptionX: A Simple Option Pricing Software Leveraging Finite Difference Methods.
 
 
 #### FEM, Group A
